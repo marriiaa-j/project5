@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Seismic Atlas — an interactive GIS earthquake dashboard." />
+  <title>Seismic Atlas | Live Earthquake GIS</title>
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3Z6h7cA+Lqf+XK7w3mH8v5nM7w5w=" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Seismic Atlas home">
+      <span class="brand-mark">◉</span>
+      <span><strong>SEISMIC</strong><small>ATLAS</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#map-section">Live map</a>
+      <a href="#about">About the data</a>
+    </nav>
+    <button class="refresh-button" id="refreshButton">Refresh data <span>↻</span></button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> LIVE USGS FEED</p>
+        <h1>Read the earth<br /><em>in motion.</em></h1>
+        <p class="hero-text">Explore the latest earthquakes around the world through an interactive geographic information system.</p>
+        <a class="primary-link" href="#map-section">Explore the map <span>↓</span></a>
+      </div>
+      <div class="hero-orbit" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="earth">◒</div></div>
+    </section>
+
+    <section class="stats-row" aria-label="Earthquake summary">
+      <div class="stat-card"><span class="stat-label">Events shown</span><strong id="eventCount">—</strong><span class="stat-note">past 7 days</span></div>
+      <div class="stat-card"><span class="stat-label">Strongest event</span><strong id="strongestMagnitude">—</strong><span class="stat-note" id="strongestLocation">Loading USGS data</span></div>
+      <div class="stat-card"><span class="stat-label">Last updated</span><strong id="lastUpdated">—</strong><span class="stat-note">automatically from USGS</span></div>
+    </section>
+
+    <section class="map-section" id="map-section">
+      <div class="section-heading"><div><p class="eyebrow">GEOGRAPHIC OVERVIEW</p><h2>Global activity</h2></div><div class="legend"><span class="legend-dot small"></span> 2.5–4.9 <span class="legend-dot medium"></span> 5.0–5.9 <span class="legend-dot large"></span> 6.0+</div></div>
+      <div class="map-layout">
+        <div class="map-shell"><div id="map" aria-label="Interactive map of recent earthquakes"></div><div class="map-loading" id="mapLoading">Connecting to the seismic network…</div></div>
+        <aside class="event-panel"><div class="panel-title"><h3>Recent events</h3><span class="event-live">● LIVE</span></div><p class="panel-subtitle">Select an event to inspect its location and magnitude.</p><div class="event-list" id="eventList"><p class="empty-state">Loading earthquake events…</p></div></aside>
+      </div>
+    </section>
+
+    <section class="about" id="about"><div><p class="eyebrow">PROJECT NOTES</p><h2>Data with a sense of place.</h2></div><div class="about-copy"><p>This project uses the United States Geological Survey (USGS) Earthquake Hazards Program API to display real-time earthquake GeoJSON data. Leaflet converts the geographic coordinates into an interactive map.</p><p>The circles use a custom pulse animation to make active seismic events easy to notice. Circle size represents magnitude, while color indicates the event’s intensity.</p><a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php" target="_blank" rel="noreferrer">View the USGS feeds ↗</a></div></section>
+  </main>
+  <footer><span>SEISMIC ATLAS / GIS PROJECT</span><span>Built with HTML, CSS, JavaScript + Leaflet</span></footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="script.js"></script>
+</body>
+</html>
